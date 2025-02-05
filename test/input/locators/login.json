@@ -1,5 +1,7 @@
 {
-    "username":"user-name",
-    "password":"password",
-    "loginButton":"login-button"
+    "username":"#user-name",
+    "password":"#password",
+    "loginButton":"#login-button",
+    "errorCloseBtn":"//button[@class='error-button']",
+    "errorSnackBar":"//h3[@data-test='error']"
 }

@@ -1,19 +1,15 @@
 // @ts-check
-const { defineConfig, devices } = require('@playwright/test');
-import path from 'path';
+import { defineConfig, devices } from '@playwright/test';
+import path from 'node:path';
 
-const resultsDir = path.resolve('./', 'PLAYWRIGHT PROJECT');  // Static results directory name
-module.exports = defineConfig({
+const resultsDir = path.resolve('./', 'PLAYWRIGHT_PROJECT'); // Static results directory name
+
+export default defineConfig({
   testDir: './test',
-  /* Run tests in files in parallel */
   fullyParallel: true,
-  /* Retry on CI only */
-  retries: 0,
-  /* Opt out of parallel tests on CI. */
-  workers: undefined,  // Removed CI-related check
+  retries: process.env.CI ? 2 : 0, // Retries twice in CI
+  workers: process.env.CI ? 1 : undefined, // Single worker in CI, parallel locally
   timeout: 60 * 1000,
-  globalTeardown: 'scripts/setup/globalTeardown.js',
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
     ['list', { printSteps: true }],
     ['json', { outputFile: 'results.json' }],
@@ -23,11 +19,12 @@ module.exports = defineConfig({
     }],
   ],
   use: {
-    trace: 'on',
+    trace:'on-first-retry',
     navigationTimeout: 30000,
     screenshot: 'only-on-failure',
+    waitUntil: 'domcontentloaded',
+    video:'on-first-retry'
   },
-  /* Configure projects for major browsers */
   projects: [
     {
       name: 'firefox',
@@ -37,7 +34,7 @@ module.exports = defineConfig({
         viewport: { height: 1080, width: 1920 },
         launchOptions: {
           args: ["--kiosk", "--no-sandbox"],
-          headless: false,
+          headless: true,  // Runs in headless mode
         },
       },
     },
@@ -49,6 +46,7 @@ module.exports = defineConfig({
         viewport: { height: 1080, width: 1920 },
         launchOptions: {
           args: ["--start-maximized"],
+          headless: true,  // Runs in headless mode
         },
       },
     },
@@ -58,6 +56,7 @@ module.exports = defineConfig({
         channel: 'chrome',
         ...devices['Desktop Chrome'],
         viewport: { height: 720, width: 1280 },
+        headless: false,  // Runs in visible mode
         launchOptions: {
           args: ["--start-maximized"],
         },
