@@ -51,6 +51,13 @@ export default defineConfig({
       },
     },
     {
+
+      name:'MobileSafari',
+      use:{
+        ...devices['iPhone 13']
+      }
+    },
+    {
       name: 'googlechrome',
       use: {
         channel: 'chrome',
