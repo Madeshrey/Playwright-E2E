@@ -23,13 +23,58 @@ async verifySignIn(){
      await expect(this.loginButton).toBeEnabled()
     }
     
-async verifyUsername(password){
-    await this.username.fill('abcd')
+async wrongUsername(username,password){
+    await this.username.fill(username)
     await this.password.fill(password)
     await this.loginButton.click()
     await expect(this.errorSnackBar).toContainText("Username and password do not match any user in this service")
     await this.errorButton.click()
     }
+
+async emptyUsername(password){
+    await this.username.clear()
+    await this.password.fill(password)
+    await this.loginButton.click()
+    await expect(this.errorSnackBar).toContainText("Username is required")
+    await this.errorButton.click()
+}
+
+async emptyPassword(username){
+    await this.username.clear()
+    await this.password.clear()
+    await this.username.fill(username)
+    await this.loginButton.click()
+    await expect(this.errorSnackBar).toContainText("Password is required")
+    await this.errorButton.click()
+}
+
+async wrongPassword(username,password){
+    await this.username.clear()
+    await this.password.clear()
+    await this.username.fill(username)
+    await this.password.fill(password)
+    await this.loginButton.click()
+    await expect(this.errorSnackBar).toContainText("Username and password do not match any user in this service")
+    await this.errorButton.click()
+}
+
+async emptyUsernameAndPassword(){
+    await this.username.clear()
+    await this.password.clear()
+    await this.loginButton.click()
+    await expect(this.errorSnackBar).toContainText("Username is required")
+    await this.errorButton.click()
+}
+
+async wrongUsernameAndPassword(username,password){
+    await this.username.clear()
+    await this.password.clear()
+    await this.username.fill(username)
+    await this.password.fill(password)
+    await this.loginButton.click()
+    await expect(this.errorSnackBar).toContainText("Username and password do not match any user in this service")
+    await this.errorButton.click()
+}
 
 async signInMethod(username,password) {
     await this.username.clear()

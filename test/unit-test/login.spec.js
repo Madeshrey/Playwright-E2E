@@ -11,8 +11,8 @@ test.describe.configure({mode:'serial'})
             size: { height: 1080, width: 1920 }
          }
       }); 
-      page = await context.newPage();
-      page.setDefaultTimeout(30000);
+      page = await context.newPage()
+      page.setDefaultTimeout(30000)
    });
    
    test.afterAll(async ({}, testInfo) => {
@@ -26,28 +26,30 @@ test.describe.configure({mode:'serial'})
       //       path: videoPath
       //    });
       // }
-     if(page) await page.close();
-     if(context) await context.close();
+     if(page) await page.close()
+     if(context) await context.close()
    });
 
    test('SignIn functionality', async () => {
       test.setTimeout(3 *60 *1000)
-      const loginJs = new Login(page);
-      await loginJs.launchURL();
-      //await loginJs.verifySignIn();
-      // await loginJs.verifyUsername('secret_sauce');
-      // await loginJs.signInMethod('standard_user', 'secret_sauce');
+      const loginJs = new Login(page)
+      await loginJs.launchURL()
    });
 
-   test.fixme('Validating fields with wrong credentials', async () => {
+   test('Validating username and password fields', async () => {
       test.setTimeout(3*60*3000)
-      const loginJs = new Login(page);
-      await loginJs.verifySignIn();
-      await loginJs.verifyUsername('secret_sauce');
+      const loginJs = new Login(page)
+      await loginJs.verifySignIn()
+      await loginJs.wrongUsername('jhS','secret_sauce')
+      await loginJs.emptyUsername('secret_sauce')
+      await loginJs.emptyPassword('standard_user')
+      await loginJs.wrongPassword('standard_user','jqhg')
+      await loginJs.emptyUsernameAndPassword()
+      await loginJs.wrongUsernameAndPassword('ugwd','ahd')
    });
 
    test('Login with valid credentials', async () => {
       test.setTimeout(3*60*3000)
-      const loginJs = new Login(page);
-      await loginJs.signInMethod('standard_user', 'secret_sauce');
+      const loginJs = new Login(page)
+      await loginJs.signInMethod('standard_user', 'secret_sauce')
    });
