@@ -27,23 +27,11 @@ export default defineConfig({
   },
   projects: [
     {
-      name: 'firefox',
-      use: {
-        channel: 'firefox',
-        ...devices['Desktop Firefox'],
-        viewport: { height: 1080, width: 1920 },
-        launchOptions: {
-          args: ["--kiosk", "--no-sandbox"],
-          headless: true,  // Runs in headless mode
-        },
-      },
-    },
-    {
       name: 'msedge',
       use: {
         channel: 'msedge',
         ...devices['Desktop Edge'],
-        viewport: { height: 1080, width: 1920 },
+        viewport: { height: 768, width: 1366 },
         launchOptions: {
           args: ["--start-maximized"],
           headless: true,  // Runs in headless mode
@@ -55,7 +43,7 @@ export default defineConfig({
       use: {
         channel: 'chrome',
         ...devices['Desktop Chrome'],
-        viewport: { height: 720, width: 1280 },
+        viewport: { height: 768, width: 1366 },
         headless: false,  // Runs in visible mode
         launchOptions: {
           args: ["--start-maximized"],

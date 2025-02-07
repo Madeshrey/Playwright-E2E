@@ -2,10 +2,10 @@ import { test, expect } from '@playwright/test';
 import { Login } from '../pages';
 
 let page;
-
+let context
 test.describe.configure({mode:'serial'})
    test.beforeAll(async ({ browser }, testInfo) => {
-      const context = await browser.newContext({
+      context = await browser.newContext({
          recordVideo: {
             dir: 'test-results/videos',
             size: { height: 1080, width: 1920 }
@@ -16,18 +16,18 @@ test.describe.configure({mode:'serial'})
    });
    
    test.afterAll(async ({}, testInfo) => {
-      if (page.video()) {
-         // const videoPath = testInfo.outputPath('login.webm');
-         const videoPath = await page.video().path();
-         await page.video().saveAs(videoPath);
-         await testInfo.attach('video', {
-            contentType: 'video/webm', // Correct MIME type
-            name: 'login',
-            path: videoPath
-         });
-      }
-      await page.close();
-      await context.close();
+      // if (page.video()) {
+      //    // const videoPath = testInfo.outputPath('login.webm');
+      //    const videoPath = await page.video().path();
+      //    await page.video().saveAs(videoPath);
+      //    await testInfo.attach('video', {
+      //       contentType: 'video/webm', // Correct MIME type
+      //       name: 'login',
+      //       path: videoPath
+      //    });
+      // }
+     if(page) await page.close();
+     if(context) await context.close();
    });
 
    test('SignIn functionality', async () => {
