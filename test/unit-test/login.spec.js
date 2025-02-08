@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { Login } from '../pages';
+import { Product } from '../pages';
 
 let page;
 let context
@@ -53,3 +54,9 @@ test.describe.configure({mode:'serial'})
       const loginJs = new Login(page)
       await loginJs.signInMethod('standard_user', 'secret_sauce')
    });
+
+   test('Product Validation',async()=>{
+      test.setTimeout(3 * 60 * 1000)
+      const productJS=new Product(page)
+      await productJS.verifyProductPage()
+   })

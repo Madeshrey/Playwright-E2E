@@ -1,0 +1,9 @@
+{
+    "logo":".app_logo",
+    "menuButton":"#react-burger-menu-btn",
+    "filterButton":".product_sort_container",
+    "addCartIcon":"#shopping_cart_container",
+    "addToCart":"//button[text()='Add to cart']",
+    "itemPrice":".inventory_item_price",
+    "inventoryList":".inventory_list"
+}

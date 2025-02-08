@@ -1,6 +1,6 @@
 import{expect}from '@playwright/test'
 import {page} from '@playwright/test'
-import { loginLocators,dataLocators } from '../input/locators/index'
+import { loginLocators} from '../input/locators/index'
 
 export class Login{
     /** *@param {import('@playwright/test').page} page */

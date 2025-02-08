@@ -1,5 +1,5 @@
 node_modules/
+.last-run.json/
 test-results/
 results.json/
 PLAYWRIGHT_PROJECT/
-.last-run.json/
