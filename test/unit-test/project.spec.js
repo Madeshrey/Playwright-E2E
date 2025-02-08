@@ -5,16 +5,17 @@ import { Product } from '../pages';
 let page;
 let context
 test.describe.configure({mode:'serial'})
-   test.beforeAll(async ({ browser }, testInfo) => {
-      context = await browser.newContext({
-         recordVideo: {
-            dir: 'test-results/videos',
-            size: { height: 1080, width: 1920 }
-         }
-      }); 
-      page = await context.newPage()
-      page.setDefaultTimeout(30000)
-   });
+test.beforeAll(async ({ browser }, testInfo) => {
+   context = await browser.newContext({
+
+      recordVideo: {
+         dir: 'test-results/videos',
+         size: { height: 768, width: 1366}
+      }
+   }); 
+   page = await context.newPage()
+   page.setDefaultTimeout(30000)
+});
    
    test.afterAll(async ({}, testInfo) => {
       // if (page.video()) {
@@ -31,7 +32,7 @@ test.describe.configure({mode:'serial'})
      if(context) await context.close()
    });
 
-   test('SignIn functionality', async () => {
+   test('Lauch the website ', async () => {
       test.setTimeout(3 *60 *1000)
       const loginJs = new Login(page)
       await loginJs.launchURL()
@@ -59,4 +60,8 @@ test.describe.configure({mode:'serial'})
       test.setTimeout(3 * 60 * 1000)
       const productJS=new Product(page)
       await productJS.verifyProductPage()
+      await productJS.filterProduct()
+      await productJS.removeAndProduct()
+      await productJS.checkoutProduct()
+      await productJS.checkoutInfo('maddy','virat','76543')
    })

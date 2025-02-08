@@ -5,5 +5,17 @@
     "addCartIcon":"#shopping_cart_container",
     "addToCart":"//button[text()='Add to cart']",
     "itemPrice":".inventory_item_price",
-    "inventoryList":".inventory_list"
+    "inventoryList":".inventory_list",
+    "filterDropdown":".product_sort_container",
+    "productName":".inventory_item_name",
+    "shoppingBadge":".shopping_cart_badge",
+    "removeButton":"#remove-sauce-labs-backpack",
+    "continueShopping":"#continue-shopping",
+    "checkout":"#checkout",
+    "firstName":"#first-name",
+    "lastName":"#last-name",
+    "postalCode":"#postal-code",
+    "continueBtn":"#continue",
+    "cancelBtn":"#cancel",
+    "logout":"logout_sidebar_link"
 }

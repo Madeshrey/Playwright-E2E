@@ -43,12 +43,26 @@ export default defineConfig({
       use: {
         channel: 'chrome',
         ...devices['Desktop Chrome'],
-        viewport: { height: 768, width: 1366 },
+        viewport: { height: 600, width: 1000 },
         headless: false,  // Runs in visible mode
         launchOptions: {
           args: ["--start-maximized"],
         },
       },
     },
+    {
+      name: 'Tablet',
+      use: {
+        viewport: { width: 768, height: 1024 }, 
+        isMobile: true, 
+      },
+    },
+    {
+      name: 'Mobile',
+      use: {
+        ...devices['iPhone 12']
+      },
+    },
+
   ],
 });
