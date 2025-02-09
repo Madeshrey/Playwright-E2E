@@ -3,3 +3,4 @@ node_modules/
 test-results/
 results.json/
 PLAYWRIGHT_PROJECT/
+.eslintrc.js

@@ -7,7 +7,7 @@ let context
 test.describe.configure({mode:'serial'})
 test.beforeAll(async ({ browser }, testInfo) => {
    context = await browser.newContext({
-
+     
       recordVideo: {
          dir: 'test-results/videos',
          size: { height: 768, width: 1366}

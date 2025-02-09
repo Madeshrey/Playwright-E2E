@@ -23,6 +23,7 @@ export default defineConfig({
     navigationTimeout: 30000,
     screenshot: 'only-on-failure',
     waitUntil: 'domcontentloaded',
+    headless: process.env.HEADLESS ? process.env.HEADLESS === 'true' : true,
     video:'on-first-retry'
   },
   projects: [
@@ -32,9 +33,9 @@ export default defineConfig({
         channel: 'msedge',
         ...devices['Desktop Edge'],
         viewport: { height: 768, width: 1366 },
+        headless: true,
         launchOptions: {
           args: ["--start-maximized"],
-          headless: true,  // Runs in headless mode
         },
       },
     },
@@ -44,9 +45,9 @@ export default defineConfig({
         channel: 'chrome',
         ...devices['Desktop Chrome'],
         viewport: { height: 600, width: 1000 },
-        headless: false,  // Runs in visible mode
+        headless: true,  // Runs in visible mode
         launchOptions: {
-          args: ["--start-maximized"],
+          args: ["--start-maximized", "--disable-dev-shm-usage", "--disable-gpu"],
         },
       },
     },
